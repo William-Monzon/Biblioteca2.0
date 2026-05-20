@@ -2,8 +2,8 @@ package models.book;
 
 public class Book extends Material {
 
-	public Book(String code, String title, String autor, int year, int copies, boolean available) {
-		super(code, title, autor, year, copies, available);
+	public Book(String code, String title, String autor, int year, int copies) {
+		super(code, title, autor, year, copies);
 	}
 
 	@Override

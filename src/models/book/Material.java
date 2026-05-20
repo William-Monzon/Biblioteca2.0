@@ -7,8 +7,7 @@ public abstract class Material {
 	private final int year;
 	private int copies;
 
-	public Material(String code, String title, String autor, int year, int copies, boolean available) {
-		super();
+	public Material(String code, String title, String autor, int year, int copies) {
 		this.code = code;
 		this.title = title;
 		this.autor = autor;

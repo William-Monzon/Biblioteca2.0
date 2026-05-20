@@ -12,29 +12,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import models.book.Book;
+import models.book.Magazine;
 
-public class ArrayListBook {
-	private final ArrayList<Book> books = new ArrayList<>();
-
-	public List<Book> getBooks() {
-		return books;
+public class ArrayListMagazine {
+private final ArrayList<Magazine> magazines = new ArrayList<>();
+	
+	public List<Magazine> getMagazines() {
+		return magazines;
 	}
 
-	public void addBooks(Book e) {
-		books.add(e);
+	public void addMagazines(Magazine e) {
+		magazines.add(e);
 	}
 
-	public void clear() {
-		books.clear();
+	public void clearMagazine() {
+		magazines.clear();
 	}
-	public void removeBook(Book e) {
-		books.remove(e);
+	public void removeMagazine(Magazine e) {
+		magazines.remove(e);
 	}
-
-	public void saveBooks(Path archivo) throws IOException {
+	
+	public void save(Path archivo) throws IOException {
 		try (BufferedWriter out = Files.newBufferedWriter(archivo, StandardCharsets.UTF_8)) {
-			for (Book e : books) {
+			for (Magazine e : magazines) {
 				out.write(e.getCode());
 				out.write(';');
 				out.write(e.getTitle());
@@ -49,12 +49,12 @@ public class ArrayListBook {
 		}
 	}
 
-	public void archiveBooks(Path archivo) throws IOException {
-		books.clear();
-		if (!Files.isRegularFile(archivo)) {
+	public void uploadFromFile(Path file) throws IOException {
+		magazines.clear();
+		if (!Files.isRegularFile(file)) {
 			return;
 		}
-		try (BufferedReader in = Files.newBufferedReader(archivo, StandardCharsets.UTF_8)) {
+		try (BufferedReader in = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
 			String linea;
 			while ((linea = in.readLine()) != null) {
 				if (linea.isBlank()) {
@@ -69,11 +69,11 @@ public class ArrayListBook {
 				String autor = t.nextToken().trim();
 				int year = Integer.parseInt(t.nextToken().trim());
 				int copies = Integer.parseInt(t.nextToken().trim());
-				books.add(new Book(code, title, autor, year, copies));
+				magazines.add(new Magazine(code, title, autor, year, copies));
 			}
 		}
 	}
-	public Collection<Book> getBookAll() {
-        return Collections.unmodifiableCollection(books);
+	public Collection<Magazine> getMagazineAll() {
+        return Collections.unmodifiableCollection(magazines);
     }
 }
