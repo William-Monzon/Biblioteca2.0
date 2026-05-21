@@ -1,6 +1,5 @@
 package services.loans;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -18,166 +17,133 @@ import models.user.User;
 
 public class ArrayListLoans {
 
-    private final ArrayList<Loans> loans = new ArrayList<>();
+	private final ArrayList<Loans> loans = new ArrayList<>();
 
-    private final ArrayList<User> users = new ArrayList<>();
+	private final ArrayList<User> users = new ArrayList<>();
 
-    private final ArrayList<Material> materials = new ArrayList<>();
+	private final ArrayList<Material> materials = new ArrayList<>();
 
+	public List<Loans> getLoans() {
+		return loans;
+	}
 
+	public void addLoan(Loans loan) {
+		loans.add(loan);
+	}
 
-    public List<Loans> getLoans() {
-        return loans;
-    }
+	public void addUser(User user) {
+		users.add(user);
+	}
 
+	public void addMaterial(Material material) {
+		materials.add(material);
+	}
 
+	public void clear() {
+		loans.clear();
+	}
 
-    public void addLoan(Loans loan) {
-        loans.add(loan);
-    }
+	public void saveLoans(Path file) throws IOException {
 
+		try (BufferedWriter out = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
 
+			for (Loans l : loans) {
 
-    public void addUser(User user) {
-        users.add(user);
-    }
+				out.write(l.getId() + ";");
 
+				out.write(l.getUser().getId() + ";");
 
+				out.write(l.getMaterial().getCode() + ";");
 
-    public void addMaterial(Material material) {
-        materials.add(material);
-    }
+				out.write(l.getDateLoans() + ";");
 
+				out.write(l.getDeadline() + ";");
 
+				if (l.getDateDelivery() != null) {
+					out.write(l.getDateDelivery().toString());
+				}
 
-    public void clear() {
-        loans.clear();
-    }
+				out.newLine();
+			}
+		}
+	}
 
+	public void archiveLoans(Path file) throws IOException {
 
+		loans.clear();
 
-    
+		if (!Files.isRegularFile(file)) {
+			return;
+		}
 
-    public void saveLoans(Path file) throws IOException {
+		try (BufferedReader in = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
 
-        try (BufferedWriter out =
-                Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
+			String line;
 
-            for (Loans l : loans) {
+			while ((line = in.readLine()) != null) {
 
-                out.write(l.getId() + ";");
+				if (line.isBlank()) {
+					continue;
+				}
 
-                out.write(l.getUser().getId() + ";");
+				StringTokenizer t = new StringTokenizer(line, ";");
 
-                out.write(l.getMaterial().getCode() + ";");
+				int id = Integer.parseInt(t.nextToken().trim());
 
-                out.write(l.getDateLoans() + ";");
+				String userCode = t.nextToken().trim();
 
-                out.write(l.getDeadline() + ";");
+				String materialCode = t.nextToken().trim();
 
-                if (l.getDateDelivery() != null) {
-                    out.write(l.getDateDelivery().toString());
-                }
+				LocalDate dateLoans = LocalDate.parse(t.nextToken().trim());
 
-                out.newLine();
-            }
-        }
-    }
+				LocalDate deadline = LocalDate.parse(t.nextToken().trim());
 
+				String delivery = "";
 
+				if (t.hasMoreTokens()) {
+					delivery = t.nextToken().trim();
+				}
 
-   
-    public void archiveLoans(Path file) throws IOException {
+				LocalDate dateDelivery;
 
-        loans.clear();
+				if (delivery.isEmpty()) {
+					dateDelivery = null;
+				} else {
+					dateDelivery = LocalDate.parse(delivery);
+				}
 
-        if (!Files.isRegularFile(file)) {
-            return;
-        }
+				User user = findUser(userCode);
 
-        try (BufferedReader in =
-                Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
+				Material material = findMaterial(materialCode);
 
-            String line;
+				Loans loan = new Loans(id, material, user, dateLoans, deadline, dateDelivery);
 
-            while ((line = in.readLine()) != null) {
+				loans.add(loan);
+			}
+		}
+	}
 
-                if (line.isBlank()) {
-                    continue;
-                }
+	private User findUser(String userCode) {
 
-                StringTokenizer t = new StringTokenizer(line, ";");
+		for (User u : users) {
 
-                int id = Integer.parseInt(t.nextToken().trim());
+			if (String.valueOf(u.getId()).equals(userCode)) {
+				return u;
+			}
+		}
 
-                String userCode = t.nextToken().trim();
+		return null;
+	}
 
-                String materialCode = t.nextToken().trim();
+	private Material findMaterial(String materialCode) {
 
-                LocalDate dateLoans =
-                        LocalDate.parse(t.nextToken().trim());
+		for (Material m : materials) {
 
-                LocalDate deadline =
-                        LocalDate.parse(t.nextToken().trim());
+			if (m.getCode().equals(materialCode)) {
+				return m;
+			}
+		}
 
-                String delivery = "";
-
-                if (t.hasMoreTokens()) {
-                    delivery = t.nextToken().trim();
-                }
-
-                LocalDate dateDelivery;
-
-                if (delivery.isEmpty()) {
-                    dateDelivery = null;
-                } else {
-                    dateDelivery = LocalDate.parse(delivery);
-                }
-
-                User user = findUser(userCode);
-
-                Material material = findMaterial(materialCode);
-
-                Loans loan = new Loans(
-                        id,
-                        material,
-                        user,
-                        dateLoans,
-                        deadline,
-                        dateDelivery
-                );
-
-                loans.add(loan);
-            }
-        }
-    }
-
-
-
-  
-    private User findUser(String userCode) {
-
-        for (User u : users) {
-
-            if (String.valueOf(u.getId()).equals(userCode)) {
-                return u;
-            }
-        }
-
-        return null;
-    }
-
-
-
-    private Material findMaterial(String materialCode) {
-
-        for (Material m : materials) {
-
-            if (m.getCode().equals(materialCode)) {
-                return m;
-            }
-        }
-
-        return null;
-    }
+		return null;
+	}
 }
