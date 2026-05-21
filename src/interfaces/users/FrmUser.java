@@ -142,12 +142,12 @@ public class FrmUser extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		txtid = new JTextField();
-		txtid.setBounds(317, 302, 293, 31);
+		txtid.setBounds(255, 302, 293, 31);
 		contentPane.add(txtid);
 		txtid.setColumns(10);
 		
 		txtcarnet = new JTextField();
-		txtcarnet.setBounds(609, 302, 300, 31);
+		txtcarnet.setBounds(547, 302, 300, 31);
 		contentPane.add(txtcarnet);
 		txtcarnet.setColumns(10);
 		
@@ -167,13 +167,16 @@ public class FrmUser extends JFrame {
 		btnShowUser.setBounds(523, 531, 238, 53);
 		contentPane.add(btnShowUser);
 		
+		// boton validar duplicados
 		JButton btnvalidarduplicados = new JButton("Validar duplicados");
 		btnvalidarduplicados.setBounds(814, 531, 238, 53);
 		contentPane.add(btnvalidarduplicados);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(317, 280, 592, 23);
+		scrollPane.setBounds(255, 279, 592, 23);
 		contentPane.add(scrollPane);
+		
+		
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
