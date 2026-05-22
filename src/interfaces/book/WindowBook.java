@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,10 +16,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.ScrollPane;
-import javax.swing.JScrollBar;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import javax.swing.JScrollPane;
 
 public class WindowBook extends JFrame {
@@ -33,7 +30,7 @@ public class WindowBook extends JFrame {
 	private JTextField txtAutor;
 	private JTextField txtYear;
 	private JTextField txtCopies;
-	private JTable tblBooks;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -59,14 +56,25 @@ public class WindowBook extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{232, 854, 0};
+		gbl_contentPane.rowHeights = new int[]{663, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 153));
-		panel.setBounds(0, 0, 232, 663);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel panelBlue = new JPanel();
+		panelBlue.setBackground(new Color(0, 0, 153));
+		GridBagConstraints gbc_panelBlue = new GridBagConstraints();
+		gbc_panelBlue.weighty = 1.0;
+		gbc_panelBlue.fill = GridBagConstraints.BOTH;
+		gbc_panelBlue.insets = new Insets(0, 0, 0, 5);
+		gbc_panelBlue.gridx = 0;
+		gbc_panelBlue.gridy = 0;
+		contentPane.add(panelBlue, gbc_panelBlue);
+		panelBlue.setLayout(null);
 		
 		JLabel lblLibrary = new JLabel("  Biblioteca");
 		lblLibrary.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,7 +82,7 @@ public class WindowBook extends JFrame {
 		lblLibrary.setForeground(new Color(255, 255, 255));
 		lblLibrary.setFont(new Font("Arial", Font.BOLD, 19));
 		lblLibrary.setBounds(32, 23, 171, 50);
-		panel.add(lblLibrary);
+		panelBlue.add(lblLibrary);
 		
 		JButton btnBook = new JButton("    Libros");
 		btnBook.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
@@ -87,7 +95,7 @@ public class WindowBook extends JFrame {
 		btnBook.setContentAreaFilled(false);
 		btnBook.setBorderPainted(false);
 		btnBook.setFocusPainted(false);
-		panel.add(btnBook);
+		panelBlue.add(btnBook);
 		
 		JButton btnUser = new JButton("   Usuarios");
 		btnUser.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
@@ -100,7 +108,7 @@ public class WindowBook extends JFrame {
 		btnUser.setContentAreaFilled(false);
 		btnUser.setBorderPainted(false);
 		btnUser.setFocusPainted(false);
-		panel.add(btnUser);
+		panelBlue.add(btnUser);
 		
 		JButton btnLoan = new JButton("   Préstamos");
 		btnLoan.addActionListener(new ActionListener() {
@@ -117,7 +125,7 @@ public class WindowBook extends JFrame {
 		btnLoan.setContentAreaFilled(false);
 		btnLoan.setBorderPainted(false);
 		btnLoan.setFocusPainted(false);
-		panel.add(btnLoan);
+		panelBlue.add(btnLoan);
 		
 		JButton btnExit = new JButton("    Salir");
 		btnExit.addActionListener(new ActionListener() {
@@ -135,129 +143,165 @@ public class WindowBook extends JFrame {
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setFocusPainted(false);
-		panel.add(btnExit);
+		panelBlue.add(btnExit);
+		
+		JPanel panelWhite = new JPanel();
+		panelWhite.setBackground(Color.WHITE);
+		GridBagConstraints gbc_panelWhite = new GridBagConstraints();
+		gbc_panelWhite.weighty = 1.0;
+		gbc_panelWhite.weightx = 1.0;
+		gbc_panelWhite.fill = GridBagConstraints.BOTH;
+		gbc_panelWhite.gridx = 1;
+		gbc_panelWhite.gridy = 0;
+		contentPane.add(panelWhite, gbc_panelWhite);
+		GridBagLayout gbl_panelWhite = new GridBagLayout();
+		gbl_panelWhite.columnWidths = new int[]{854, 0};
+		gbl_panelWhite.rowHeights = new int[]{36, 42, 2, 301, 35, 0};
+		gbl_panelWhite.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panelWhite.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panelWhite.setLayout(gbl_panelWhite);
 		
 		JLabel lblBooks = new JLabel("Libros");
+		GridBagConstraints gbc_lblBooks = new GridBagConstraints();
+		gbc_lblBooks.anchor = GridBagConstraints.WEST;
+		gbc_lblBooks.fill = GridBagConstraints.VERTICAL;
+		gbc_lblBooks.insets = new Insets(0, 0, 5, 0);
+		gbc_lblBooks.gridx = 0;
+		gbc_lblBooks.gridy = 1;
+		panelWhite.add(lblBooks, gbc_lblBooks);
 		lblBooks.setFont(new Font("Arial", Font.BOLD, 30));
-		lblBooks.setBounds(270, 10, 109, 42);
-		contentPane.add(lblBooks);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(252, 62, 824, 2);
-		contentPane.add(separator);
+		GridBagConstraints gbc_separator = new GridBagConstraints();
+		gbc_separator.anchor = GridBagConstraints.NORTH;
+		gbc_separator.fill = GridBagConstraints.HORIZONTAL;
+		gbc_separator.insets = new Insets(0, 0, 5, 0);
+		gbc_separator.gridx = 0;
+		gbc_separator.gridy = 2;
+		panelWhite.add(separator, gbc_separator);
 		
-		JLabel lblForm = new JLabel("Formulario");
-		lblForm.setFont(new Font("Arial", Font.BOLD, 20));
-		lblForm.setBounds(270, 83, 135, 42);
-		contentPane.add(lblForm);
-		
-		JLabel lblCode = new JLabel("Código");
-		lblCode.setFont(new Font("Arial", Font.BOLD, 15));
-		lblCode.setBounds(270, 148, 73, 27);
-		contentPane.add(lblCode);
-		
-		JLabel lblTitle = new JLabel("Titulo");
-		lblTitle.setFont(new Font("Arial", Font.BOLD, 15));
-		lblTitle.setBounds(512, 159, 52, 16);
-		contentPane.add(lblTitle);
-		
-		JLabel lblAutor = new JLabel("Autor");
-		lblAutor.setFont(new Font("Arial", Font.BOLD, 15));
-		lblAutor.setBounds(270, 236, 52, 16);
-		contentPane.add(lblAutor);
-		
-		JLabel lblYear = new JLabel("Año");
-		lblYear.setFont(new Font("Arial", Font.BOLD, 15));
-		lblYear.setBounds(734, 236, 52, 16);
-		contentPane.add(lblYear);
-		
-		JLabel lblCopies = new JLabel("Copias");
-		lblCopies.setFont(new Font("Arial", Font.BOLD, 15));
-		lblCopies.setBounds(933, 236, 52, 16);
-		contentPane.add(lblCopies);
-		
-		txtCode = new JTextField();
-		txtCode.setForeground(Color.LIGHT_GRAY);
-		txtCode.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtCode.setText("Ingrese el código");
-		txtCode.setBounds(270, 185, 125, 27);
-		contentPane.add(txtCode);
-		txtCode.setColumns(10);
-		
-		txtTitle = new JTextField();
-		txtTitle.setText("Ingrese el titulo");
-		txtTitle.setForeground(Color.LIGHT_GRAY);
-		txtTitle.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtTitle.setColumns(10);
-		txtTitle.setBounds(512, 185, 400, 27);
-		contentPane.add(txtTitle);
-		
-		txtAutor = new JTextField();
-		txtAutor.setText("Ingrese el autor");
-		txtAutor.setForeground(Color.LIGHT_GRAY);
-		txtAutor.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtAutor.setColumns(10);
-		txtAutor.setBounds(270, 262, 400, 27);
-		contentPane.add(txtAutor);
-		
-		txtYear = new JTextField();
-		txtYear.setText("Ingrese el año");
-		txtYear.setForeground(Color.LIGHT_GRAY);
-		txtYear.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtYear.setColumns(10);
-		txtYear.setBounds(733, 262, 125, 27);
-		contentPane.add(txtYear);
-		
-		txtCopies = new JTextField();
-		txtCopies.setText("Ingrese las copias");
-		txtCopies.setForeground(Color.LIGHT_GRAY);
-		txtCopies.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtCopies.setColumns(10);
-		txtCopies.setBounds(932, 262, 125, 27);
-		contentPane.add(txtCopies);
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 3;
+		panelWhite.add(panel, gbc_panel);
+		panel.setLayout(null);
 		
 		JButton btnAddBook = new JButton("Agregar Libro");
+		btnAddBook.setBounds(38, 256, 146, 35);
+		panel.add(btnAddBook);
 		btnAddBook.setFont(new Font("Arial", Font.BOLD, 17));
-		btnAddBook.setBounds(270, 323, 146, 35);
 		btnAddBook.setBackground(new Color(0, 0, 153));
 		btnAddBook.setForeground(Color.WHITE);
 		btnAddBook.setOpaque(true);
 		btnAddBook.setContentAreaFilled(true);
 		btnAddBook.setBorderPainted(false);
 		btnAddBook.setFocusPainted(false);
-		contentPane.add(btnAddBook);
 		
-		tblBooks = new JTable();
-		tblBooks.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tblBooks.setFont(new Font("Arial", Font.BOLD, 12));
-		tblBooks.setModel(new DefaultTableModel(
+		txtAutor = new JTextField();
+		txtAutor.setBounds(38, 199, 433, 27);
+		panel.add(txtAutor);
+		txtAutor.setToolTipText("Ingrese el autor");
+		txtAutor.setForeground(new Color(0, 0, 0));
+		txtAutor.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtAutor.setColumns(10);
+		
+		JLabel lblAutor = new JLabel("Autor");
+		lblAutor.setBounds(38, 173, 52, 16);
+		panel.add(lblAutor);
+		lblAutor.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		txtCode = new JTextField();
+		txtCode.setBounds(38, 121, 125, 27);
+		panel.add(txtCode);
+		txtCode.setToolTipText("Ingrese el código");
+		txtCode.setForeground(new Color(0, 0, 0));
+		txtCode.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtCode.setColumns(10);
+		
+		JLabel lblCode = new JLabel("Código");
+		lblCode.setBounds(38, 84, 68, 27);
+		panel.add(lblCode);
+		lblCode.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		txtYear = new JTextField();
+		txtYear.setBounds(526, 199, 125, 27);
+		panel.add(txtYear);
+		txtYear.setToolTipText("Ingrese el año");
+		txtYear.setForeground(new Color(0, 0, 0));
+		txtYear.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtYear.setColumns(10);
+		
+		JLabel lblYear = new JLabel("Año");
+		lblYear.setBounds(526, 173, 52, 16);
+		panel.add(lblYear);
+		lblYear.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		txtCopies = new JTextField();
+		txtCopies.setBounds(703, 199, 125, 27);
+		panel.add(txtCopies);
+		txtCopies.setToolTipText("Ingrese las copias");
+		txtCopies.setForeground(new Color(0, 0, 0));
+		txtCopies.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtCopies.setColumns(10);
+		
+		JLabel lblCopies = new JLabel("Copias");
+		lblCopies.setBounds(703, 173, 52, 16);
+		panel.add(lblCopies);
+		lblCopies.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		txtTitle = new JTextField();
+		txtTitle.setBounds(284, 121, 471, 27);
+		panel.add(txtTitle);
+		txtTitle.setToolTipText("Ingrese el titulo");
+		txtTitle.setForeground(new Color(0, 0, 0));
+		txtTitle.setFont(new Font("Arial", Font.PLAIN, 12));
+		txtTitle.setColumns(10);
+		
+		JLabel lblTitle = new JLabel("Titulo");
+		lblTitle.setBounds(285, 89, 52, 16);
+		panel.add(lblTitle);
+		lblTitle.setFont(new Font("Arial", Font.BOLD, 15));
+		
+		JLabel lblForm = new JLabel("Formulario");
+		lblForm.setBounds(38, 10, 135, 42);
+		panel.add(lblForm);
+		lblForm.setFont(new Font("Arial", Font.BOLD, 20));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.weighty = 1.0;
+		gbc_scrollPane.weightx = 1.0;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 4;
+		panelWhite.add(scrollPane, gbc_scrollPane);
+		
+		table = new JTable();
+		table.setFont(new Font("Arial", Font.BOLD, 12));
+		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"Code", "Title", "Autor", "Year", "Copies"
+				"C\u00F3digo", "Titulo", "Autor", "A\u00F1o", "Copias"
 			}
 		));
-		tblBooks.getColumnModel().getColumn(0).setPreferredWidth(20);
-		tblBooks.getColumnModel().getColumn(0).setMinWidth(20);
-		tblBooks.getColumnModel().getColumn(1).setPreferredWidth(200);
-		tblBooks.getColumnModel().getColumn(2).setPreferredWidth(200);
-		tblBooks.getColumnModel().getColumn(2).setMinWidth(20);
-		tblBooks.getColumnModel().getColumn(3).setPreferredWidth(20);
-		tblBooks.getColumnModel().getColumn(3).setMinWidth(20);
-		tblBooks.getColumnModel().getColumn(4).setPreferredWidth(20);
-		tblBooks.getColumnModel().getColumn(4).setMinWidth(20);
-		tblBooks.setBounds(252, 419, 805, 160);
-		contentPane.add(tblBooks);
+		table.getColumnModel().getColumn(0).setPreferredWidth(15);
+		table.getColumnModel().getColumn(1).setPreferredWidth(210);
+		table.getColumnModel().getColumn(1).setMinWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(210);
+		table.getColumnModel().getColumn(2).setMinWidth(20);
+		table.getColumnModel().getColumn(3).setPreferredWidth(15);
+		table.getColumnModel().getColumn(4).setPreferredWidth(15);
+		table.setToolTipText("");
+		table.setFillsViewportHeight(true);
+		table.setCellSelectionEnabled(true);
+		table.setColumnSelectionAllowed(true);
+		scrollPane.setViewportView(table);
 		
 
 	}

@@ -70,6 +70,7 @@ public class FrmAddUser extends JFrame {
 		contentPane.add(lblCARNET);
 		
 		textID = new JTextField();
+		textID.setEditable(false);
 		textID.setBounds(27, 59, 284, 30);
 		contentPane.add(textID);
 		textID.setColumns(10);
@@ -80,6 +81,7 @@ public class FrmAddUser extends JFrame {
 		contentPane.add(lblNOMBRE);
 		
 		textCARNET = new JTextField();
+		textCARNET.setEditable(false);
 		textCARNET.setBounds(27, 128, 284, 30);
 		contentPane.add(textCARNET);
 		textCARNET.setColumns(10);
