@@ -1,56 +1,24 @@
 package main;
 
-
-
-//<<<<<<< HEAD
-//=======
-
-  //>>>>>>> 205600e205dcf27a4782a007f526536e2d768fe8
-import models.user.*;
-import services.user.ArrayListUser;
-
-
-
-
-
-
+import controllerUser.UserController;
+import interfaces.users.FrmUser;
 
 
 public class Main {
 
 	public static void main(String[] rgs)  {
 		// TODO Auto-generated method stub
-
-	
 	
 		
-		
-		// ejemplo usuario
-		User u1= new User(1,18,"5241625","mario","jerez","45f44s","abdiel@gmail.como","jutiapa, jutiapa");
-		
-		u1.showinf();
-		
-	
-		
-	
+		// USUARIO
+		FrmUser view = new FrmUser();
 
-		
-//<<<<<<< HEAD
-//=======
-		// servicios usuarios
-		ArrayListUser service = new ArrayListUser();
-	        
-	        for (User u :
-	                service.listUsers()) {
+		new UserController(view);
 
-	            u.showinf();
-
-	            System.out.println();
-	        }
+		view.setVisible(true);
 		        
 		        
 	}
-//>>>>>>> 205600e205dcf27a4782a007f526536e2d768fe8
 
 
 }
