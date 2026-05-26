@@ -14,17 +14,17 @@ public class ArrayListMaterial {
 	ArrayListMagazine magazines = new ArrayListMagazine();
 
 	public Collection<Book> getLibros() {
-		return books.getBookAll();
+		return books.getBooks();
 	}
 
 	public Collection<Magazine> getRevistas() {
-		return magazines.getMagazineAll();
+		return magazines.getMagazines();
 	}
 
 	public List<Material> getMaterialAll() {
 		List<Material> allMaterial = new ArrayList<>();
-		allMaterial.addAll(books.getBookAll());
-		allMaterial.addAll(magazines.getMagazineAll());
+		allMaterial.addAll(books.getBooks());
+		allMaterial.addAll(magazines.getMagazines());
 		return Collections.unmodifiableList(allMaterial);
 	}
 

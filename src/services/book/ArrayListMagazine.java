@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -18,8 +17,7 @@ public class ArrayListMagazine {
 private final ArrayList<Magazine> magazines = new ArrayList<>();
 	
 	public List<Magazine> getMagazines() {
-		return magazines;
-	}
+		return Collections.unmodifiableList(magazines);	}
 
 	public void addMagazines(Magazine e) {
 		magazines.add(e);
@@ -41,9 +39,9 @@ private final ArrayList<Magazine> magazines = new ArrayList<>();
 				out.write(';');
 				out.write(e.getAutor());
 				out.write(';');
-				out.write(e.getYear());
+				out.write(String.valueOf(e.getYear()));
 				out.write(';');
-				out.write(e.getCopies());
+				out.write(String.valueOf(e.getCopies()));
 				out.newLine();
 			}
 		}
@@ -67,13 +65,16 @@ private final ArrayList<Magazine> magazines = new ArrayList<>();
 				String code = t.nextToken().trim();
 				String title = t.nextToken().trim();
 				String autor = t.nextToken().trim();
-				int year = Integer.parseInt(t.nextToken().trim());
-				int copies = Integer.parseInt(t.nextToken().trim());
-				magazines.add(new Magazine(code, title, autor, year, copies));
+				try {
+					int year = Integer.parseInt(t.nextToken().trim());
+					int copies = Integer.parseInt(t.nextToken().trim());
+					magazines.add(new Magazine(code, title, autor, year, copies));
+				} catch(NumberFormatException e){
+					System.out.println("Línea malformada, se omite: " + linea);
+				}
+				
+				
 			}
 		}
 	}
-	public Collection<Magazine> getMagazineAll() {
-        return Collections.unmodifiableCollection(magazines);
-    }
 }
