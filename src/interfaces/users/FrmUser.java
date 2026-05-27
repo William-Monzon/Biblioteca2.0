@@ -16,6 +16,10 @@ import javax.swing.border.EmptyBorder;
 
 import interfaces.book.WindowBook;
 
+
+
+
+
 public class FrmUser extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -44,41 +48,18 @@ public class FrmUser extends JFrame {
      		contentPane.add(panel);
      		panel.setLayout(null);
      		
-     	
-
-    		
-    		
-     		
-     		
      		JLabel lblLibrary = new JLabel("  Biblioteca");
     		lblLibrary.setHorizontalAlignment(SwingConstants.CENTER);
     		lblLibrary.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Library.png")));
     		lblLibrary.setForeground(new Color(255, 255, 255));
     		lblLibrary.setFont(new Font("Arial", Font.BOLD, 19));
-    		lblLibrary.setBounds(10, 20, 171, 50);
+    		lblLibrary.setBounds(32, 23, 171, 50);
     		panel.add(lblLibrary);
-     		
-     		
-     		
-     		
-    		JButton btnUser = new JButton("   Usuarios");
-    		btnUser.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
-    		btnUser.setFont(new Font("Arial", Font.BOLD, 16));
-    		btnUser.setBounds(21, 256, 160, 38);
-    		// color azul del botón
-    		btnUser.setBackground(Color.BLUE);
-    		btnUser.setForeground(Color.WHITE);
-    		btnUser.setOpaque(true);
-    		btnUser.setContentAreaFilled(false);
-    		btnUser.setBorderPainted(false);
-    		btnUser.setFocusPainted(false);
-    		panel.add(btnUser);
-     		
-     		
+    		
     		JButton btnBook = new JButton("    Libros");
     		btnBook.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
     		btnBook.setFont(new Font("Arial", Font.BOLD, 16));
-    		btnBook.setBounds(21, 167, 160, 38);
+    		btnBook.setBounds(33, 115, 160, 38);
     		// color azul del botón
     		btnBook.setBackground(Color.BLUE);
     		btnBook.setForeground(Color.WHITE);
@@ -87,16 +68,28 @@ public class FrmUser extends JFrame {
     		btnBook.setBorderPainted(false);
     		btnBook.setFocusPainted(false);
     		panel.add(btnBook);
-     		
-     
-     		JButton btnLoan = new JButton("   Préstamos");
+    		
+    		JButton btnUser = new JButton("   Usuarios");
+    		btnUser.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
+    		btnUser.setFont(new Font("Arial", Font.BOLD, 16));
+    		btnUser.setBounds(43, 165, 160, 38);
+    		// color azul del botón
+    		btnUser.setBackground(Color.BLUE);
+    		btnUser.setForeground(Color.WHITE);
+    		btnUser.setOpaque(true);
+    		btnUser.setContentAreaFilled(false);
+    		btnUser.setBorderPainted(false);
+    		btnUser.setFocusPainted(false);
+    		panel.add(btnUser);
+    		
+    		JButton btnLoan = new JButton("   Préstamos");
     		btnLoan.addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent e) {
     			}
     		});
     		btnLoan.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Loans.png")));
     		btnLoan.setFont(new Font("Arial", Font.BOLD, 16));
-    		btnLoan.setBounds(31, 365, 170, 38);
+    		btnLoan.setBounds(40, 215, 170, 38);
     		// color azul del botón
     		btnLoan.setBackground(Color.BLUE);
     		btnLoan.setForeground(Color.WHITE);
@@ -106,9 +99,7 @@ public class FrmUser extends JFrame {
     		btnLoan.setFocusPainted(false);
     		panel.add(btnLoan);
     		
-     		
-     		
-     		JButton btnExit = new JButton("    Salir");
+    		JButton btnExit = new JButton("    Salir");
     		btnExit.addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent e) {
     			}
@@ -116,7 +107,7 @@ public class FrmUser extends JFrame {
     		btnExit.setHorizontalAlignment(SwingConstants.LEADING);
     		btnExit.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Exit.png")));
     		btnExit.setFont(new Font("Arial", Font.BOLD, 16));
-    		btnExit.setBounds(31, 481, 160, 38);
+    		btnExit.setBounds(43, 265, 160, 38);
     		// color azul del botón
     		btnExit.setBackground(Color.BLUE);
     		btnExit.setForeground(Color.WHITE);
@@ -125,7 +116,6 @@ public class FrmUser extends JFrame {
     		btnExit.setBorderPainted(false);
     		btnExit.setFocusPainted(false);
     		panel.add(btnExit);
-    		
      		
      		
      		

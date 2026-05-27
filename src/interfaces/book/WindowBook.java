@@ -16,12 +16,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import interfaces.loans.windowLoans;
+import interfaces.users.FrmAddUser;
+import interfaces.users.FrmUser;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JScrollPane;
 
-public class WindowBook extends JFrame {
+public class WindowBook extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -31,6 +36,7 @@ public class WindowBook extends JFrame {
 	private JTextField txtYear;
 	private JTextField txtCopies;
 	private JTable table;
+	public JButton btnBook, btnUser, btnLoan, btnExit;
 
 	/**
 	 * Launch the application.
@@ -84,7 +90,7 @@ public class WindowBook extends JFrame {
 		lblLibrary.setBounds(32, 23, 171, 50);
 		panelBlue.add(lblLibrary);
 		
-		JButton btnBook = new JButton("    Libros");
+		btnBook = new JButton("    Libros");
 		btnBook.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
 		btnBook.setFont(new Font("Arial", Font.BOLD, 16));
 		btnBook.setBounds(33, 115, 160, 38);
@@ -95,9 +101,10 @@ public class WindowBook extends JFrame {
 		btnBook.setContentAreaFilled(false);
 		btnBook.setBorderPainted(false);
 		btnBook.setFocusPainted(false);
+		btnBook.addActionListener(this);
 		panelBlue.add(btnBook);
 		
-		JButton btnUser = new JButton("   Usuarios");
+		btnUser = new JButton("   Usuarios");
 		btnUser.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
 		btnUser.setFont(new Font("Arial", Font.BOLD, 16));
 		btnUser.setBounds(43, 165, 160, 38);
@@ -108,13 +115,10 @@ public class WindowBook extends JFrame {
 		btnUser.setContentAreaFilled(false);
 		btnUser.setBorderPainted(false);
 		btnUser.setFocusPainted(false);
+		btnUser.addActionListener(this);
 		panelBlue.add(btnUser);
 		
-		JButton btnLoan = new JButton("   Préstamos");
-		btnLoan.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnLoan = new JButton("   Préstamos");
 		btnLoan.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Loans.png")));
 		btnLoan.setFont(new Font("Arial", Font.BOLD, 16));
 		btnLoan.setBounds(40, 215, 170, 38);
@@ -125,13 +129,10 @@ public class WindowBook extends JFrame {
 		btnLoan.setContentAreaFilled(false);
 		btnLoan.setBorderPainted(false);
 		btnLoan.setFocusPainted(false);
+		btnLoan.addActionListener(this);
 		panelBlue.add(btnLoan);
 		
-		JButton btnExit = new JButton("    Salir");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnExit = new JButton("    Salir");
 		btnExit.setHorizontalAlignment(SwingConstants.LEADING);
 		btnExit.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Exit.png")));
 		btnExit.setFont(new Font("Arial", Font.BOLD, 16));
@@ -143,6 +144,7 @@ public class WindowBook extends JFrame {
 		btnExit.setContentAreaFilled(false);
 		btnExit.setBorderPainted(false);
 		btnExit.setFocusPainted(false);
+		btnExit.addActionListener(this);
 		panelBlue.add(btnExit);
 		
 		JPanel panelWhite = new JPanel();
@@ -192,6 +194,7 @@ public class WindowBook extends JFrame {
 		
 		JButton btnAddBook = new JButton("Agregar Libro");
 		btnAddBook.setBounds(38, 256, 146, 35);
+		btnBook.addActionListener(this);
 		panel.add(btnAddBook);
 		btnAddBook.setFont(new Font("Arial", Font.BOLD, 17));
 		btnAddBook.setBackground(new Color(0, 0, 153));
@@ -302,7 +305,61 @@ public class WindowBook extends JFrame {
 		table.setCellSelectionEnabled(true);
 		table.setColumnSelectionAllowed(true);
 		scrollPane.setViewportView(table);
+	}
+	public void button() {
 		
+	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(btnBook==e.getSource()) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						WindowBook frame = new WindowBook();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		if(btnUser==e.getSource()) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						FrmUser frame = new FrmUser();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		if(btnLoan==e.getSource()) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						windowLoans frame = new windowLoans();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		if(btnExit==e.getSource()) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						FrmAddUser frame = new FrmAddUser();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+		
 	}
 }

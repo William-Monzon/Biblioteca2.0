@@ -12,7 +12,7 @@ public abstract class Material {
 		this.title = title;
 		this.autor = autor;
 		this.year = year;
-		this.copies = copies;
+		setCopies(copies);
 	}
 
 	public String getCode() {
@@ -36,10 +36,10 @@ public abstract class Material {
 	}
 
 	public void setCopies(int copies) {
+		if(copies<0) {
+			throw new IllegalArgumentException("Error: ");
+		}
 		this.copies = copies;
-	}
-
-	public void setAvailable(boolean available) {
 	}
 
 	public abstract double calculateFine();
