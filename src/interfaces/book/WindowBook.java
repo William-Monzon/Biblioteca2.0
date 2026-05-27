@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import interfaces.loans.windowLoans;
 import interfaces.users.FrmUser;
 
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

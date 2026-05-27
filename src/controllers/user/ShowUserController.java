@@ -1,4 +1,4 @@
-package controllerUser;
+package controllers.user;
 
 
 import java.awt.event.ActionEvent;
