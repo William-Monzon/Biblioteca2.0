@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import models.book.Book;
 import models.book.Magazine;
@@ -32,7 +33,7 @@ public class ArrayListMaterial {
 		String t = termino.toLowerCase();
 		return getMaterialAll().stream()
 				.filter(m -> m.getCode().toLowerCase().contains(t) || m.getTitle().toLowerCase().contains(t))
-				.toList();
+				.collect(Collectors.toList());
 	}
 
 }

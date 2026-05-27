@@ -5,7 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+
 import javax.swing.JLabel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -18,42 +20,37 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import interfaces.loans.windowLoans;
-import interfaces.users.FrmAddUser;
 import interfaces.users.FrmUser;
+
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JScrollPane;
 
 public class WindowBook extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtCode;
-	private JTextField txtTitle;
-	private JTextField txtAutor;
-	private JTextField txtYear;
-	private JTextField txtCopies;
-	private JTable table;
-	public JButton btnBook, btnUser, btnLoan, btnExit;
+	private JPanel contentPane, panelBlue, panelWhite;
+	public JTextField txtCode;
+	public JTextField txtTitle;
+	public JTextField txtAutor;
+	public JTextField txtYear;
+	public JTextField txtCopies;
+	public JTable table;
+	public JButton btnBook, btnUser, btnLoan, btnExit, btnAddBook, btnModifyBook, btnDeleteBook;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WindowBook frame = new WindowBook();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	/*public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+			try {
+				WindowBook frame = new WindowBook();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				ex.printStackTrace();
 			}
 		});
-	}
-
+	}*/
 	/**
 	 * Create the frame.
 	 */
@@ -71,7 +68,7 @@ public class WindowBook extends JFrame implements ActionListener {
 		gbl_contentPane.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JPanel panelBlue = new JPanel();
+		panelBlue = new JPanel();
 		panelBlue.setBackground(new Color(0, 0, 153));
 		GridBagConstraints gbc_panelBlue = new GridBagConstraints();
 		gbc_panelBlue.weighty = 1.0;
@@ -86,68 +83,29 @@ public class WindowBook extends JFrame implements ActionListener {
 		lblLibrary.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLibrary.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Library.png")));
 		lblLibrary.setForeground(new Color(255, 255, 255));
-		lblLibrary.setFont(new Font("Arial", Font.BOLD, 19));
+		lblLibrary.setFont(new Font("Dialog", Font.BOLD, 19));
 		lblLibrary.setBounds(32, 23, 171, 50);
 		panelBlue.add(lblLibrary);
 		
-		btnBook = new JButton("    Libros");
-		btnBook.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
-		btnBook.setFont(new Font("Arial", Font.BOLD, 16));
+		btnBook = buttons("    Libros", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
 		btnBook.setBounds(33, 115, 160, 38);
-		// color azul del botón
-		btnBook.setBackground(Color.BLUE);
-		btnBook.setForeground(Color.WHITE);
-		btnBook.setOpaque(true);
-		btnBook.setContentAreaFilled(false);
-		btnBook.setBorderPainted(false);
-		btnBook.setFocusPainted(false);
-		btnBook.addActionListener(this);
 		panelBlue.add(btnBook);
 		
-		btnUser = new JButton("   Usuarios");
-		btnUser.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
-		btnUser.setFont(new Font("Arial", Font.BOLD, 16));
+		
+		btnUser = buttons("   Usuarios", new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
 		btnUser.setBounds(43, 165, 160, 38);
-		// color azul del botón
-		btnUser.setBackground(Color.BLUE);
-		btnUser.setForeground(Color.WHITE);
-		btnUser.setOpaque(true);
-		btnUser.setContentAreaFilled(false);
-		btnUser.setBorderPainted(false);
-		btnUser.setFocusPainted(false);
-		btnUser.addActionListener(this);
 		panelBlue.add(btnUser);
 		
-		btnLoan = new JButton("   Préstamos");
-		btnLoan.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Loans.png")));
-		btnLoan.setFont(new Font("Arial", Font.BOLD, 16));
+		btnLoan = buttons("   Préstamos", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Loans.png")));
 		btnLoan.setBounds(40, 215, 170, 38);
-		// color azul del botón
-		btnLoan.setBackground(Color.BLUE);
-		btnLoan.setForeground(Color.WHITE);
-		btnLoan.setOpaque(true);
-		btnLoan.setContentAreaFilled(false);
-		btnLoan.setBorderPainted(false);
-		btnLoan.setFocusPainted(false);
-		btnLoan.addActionListener(this);
 		panelBlue.add(btnLoan);
 		
-		btnExit = new JButton("    Salir");
+		btnExit = buttons("    Salir", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Exit.png")));
 		btnExit.setHorizontalAlignment(SwingConstants.LEADING);
-		btnExit.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Exit.png")));
-		btnExit.setFont(new Font("Arial", Font.BOLD, 16));
 		btnExit.setBounds(43, 265, 160, 38);
-		// color azul del botón
-		btnExit.setBackground(Color.BLUE);
-		btnExit.setForeground(Color.WHITE);
-		btnExit.setOpaque(true);
-		btnExit.setContentAreaFilled(false);
-		btnExit.setBorderPainted(false);
-		btnExit.setFocusPainted(false);
-		btnExit.addActionListener(this);
 		panelBlue.add(btnExit);
 		
-		JPanel panelWhite = new JPanel();
+		panelWhite = new JPanel();
 		panelWhite.setBackground(Color.WHITE);
 		GridBagConstraints gbc_panelWhite = new GridBagConstraints();
 		gbc_panelWhite.weighty = 1.0;
@@ -171,7 +129,7 @@ public class WindowBook extends JFrame implements ActionListener {
 		gbc_lblBooks.gridx = 0;
 		gbc_lblBooks.gridy = 1;
 		panelWhite.add(lblBooks, gbc_lblBooks);
-		lblBooks.setFont(new Font("Arial", Font.BOLD, 30));
+		lblBooks.setFont(new Font("Dialog", Font.BOLD, 30));
 		
 		JSeparator separator = new JSeparator();
 		GridBagConstraints gbc_separator = new GridBagConstraints();
@@ -192,87 +150,87 @@ public class WindowBook extends JFrame implements ActionListener {
 		panelWhite.add(panel, gbc_panel);
 		panel.setLayout(null);
 		
-		JButton btnAddBook = new JButton("Agregar Libro");
-		btnAddBook.setBounds(38, 256, 146, 35);
-		btnBook.addActionListener(this);
-		panel.add(btnAddBook);
-		btnAddBook.setFont(new Font("Arial", Font.BOLD, 17));
+		btnAddBook = new JButton("Agregar");
+		btnAddBook.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnAddBook.setBackground(new Color(0, 0, 153));
 		btnAddBook.setForeground(Color.WHITE);
 		btnAddBook.setOpaque(true);
-		btnAddBook.setContentAreaFilled(true);
 		btnAddBook.setBorderPainted(false);
 		btnAddBook.setFocusPainted(false);
+		btnAddBook.addActionListener(this);
+		btnAddBook.setBounds(38, 256, 146, 35);
+		panel.add(btnAddBook);
+
+		btnModifyBook = new JButton("Modificar");
+		btnModifyBook.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnModifyBook.setBackground(new Color(204, 153, 0));
+		btnModifyBook.setForeground(Color.WHITE);
+		btnModifyBook.setOpaque(true);
+		btnModifyBook.setBorderPainted(false);
+		btnModifyBook.setFocusPainted(false);
+		btnModifyBook.setBounds(297, 256, 146, 35);
+		panel.add(btnModifyBook);
+
+		btnDeleteBook = new JButton("Eliminar");
+		btnDeleteBook.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnDeleteBook.setBackground(new Color(153, 0, 0));
+		btnDeleteBook.setForeground(Color.WHITE);
+		btnDeleteBook.setOpaque(true);
+		btnDeleteBook.setBorderPainted(false);
+		btnDeleteBook.setFocusPainted(false);
+		btnDeleteBook.setBounds(561, 256, 146, 35);
+		panel.add(btnDeleteBook);
 		
-		txtAutor = new JTextField();
+		
+		txtAutor = txtField("Ingrese el autor");
 		txtAutor.setBounds(38, 199, 433, 27);
 		panel.add(txtAutor);
-		txtAutor.setToolTipText("Ingrese el autor");
-		txtAutor.setForeground(new Color(0, 0, 0));
-		txtAutor.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtAutor.setColumns(10);
 		
 		JLabel lblAutor = new JLabel("Autor");
 		lblAutor.setBounds(38, 173, 52, 16);
 		panel.add(lblAutor);
-		lblAutor.setFont(new Font("Arial", Font.BOLD, 15));
+		lblAutor.setFont(new Font("Dialog", Font.BOLD, 15));
 		
-		txtCode = new JTextField();
+		txtCode = txtField("Ingrese el código");
 		txtCode.setBounds(38, 121, 125, 27);
 		panel.add(txtCode);
-		txtCode.setToolTipText("Ingrese el código");
-		txtCode.setForeground(new Color(0, 0, 0));
-		txtCode.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtCode.setColumns(10);
 		
 		JLabel lblCode = new JLabel("Código");
 		lblCode.setBounds(38, 84, 68, 27);
 		panel.add(lblCode);
-		lblCode.setFont(new Font("Arial", Font.BOLD, 15));
+		lblCode.setFont(new Font("Dialog", Font.BOLD, 15));
 		
-		txtYear = new JTextField();
+		txtYear = txtField("Ingrese el año");
 		txtYear.setBounds(526, 199, 125, 27);
 		panel.add(txtYear);
-		txtYear.setToolTipText("Ingrese el año");
-		txtYear.setForeground(new Color(0, 0, 0));
-		txtYear.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtYear.setColumns(10);
 		
 		JLabel lblYear = new JLabel("Año");
 		lblYear.setBounds(526, 173, 52, 16);
 		panel.add(lblYear);
-		lblYear.setFont(new Font("Arial", Font.BOLD, 15));
+		lblYear.setFont(new Font("Dialog", Font.BOLD, 15));
 		
-		txtCopies = new JTextField();
+		txtCopies = txtField("Ingrese las copias");
 		txtCopies.setBounds(703, 199, 125, 27);
 		panel.add(txtCopies);
-		txtCopies.setToolTipText("Ingrese las copias");
-		txtCopies.setForeground(new Color(0, 0, 0));
-		txtCopies.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtCopies.setColumns(10);
 		
 		JLabel lblCopies = new JLabel("Copias");
 		lblCopies.setBounds(703, 173, 52, 16);
 		panel.add(lblCopies);
-		lblCopies.setFont(new Font("Arial", Font.BOLD, 15));
+		lblCopies.setFont(new Font("Dialog", Font.BOLD, 15));
 		
-		txtTitle = new JTextField();
+		txtTitle = txtField("Ingrese el titulo");
 		txtTitle.setBounds(284, 121, 471, 27);
 		panel.add(txtTitle);
-		txtTitle.setToolTipText("Ingrese el titulo");
-		txtTitle.setForeground(new Color(0, 0, 0));
-		txtTitle.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtTitle.setColumns(10);
 		
 		JLabel lblTitle = new JLabel("Titulo");
 		lblTitle.setBounds(285, 89, 52, 16);
 		panel.add(lblTitle);
-		lblTitle.setFont(new Font("Arial", Font.BOLD, 15));
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 15));
 		
 		JLabel lblForm = new JLabel("Formulario");
 		lblForm.setBounds(38, 10, 135, 42);
 		panel.add(lblForm);
-		lblForm.setFont(new Font("Arial", Font.BOLD, 20));
+		lblForm.setFont(new Font("Dialog", Font.BOLD, 20));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -284,11 +242,9 @@ public class WindowBook extends JFrame implements ActionListener {
 		panelWhite.add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
-		table.setFont(new Font("Arial", Font.BOLD, 12));
+		table.setFont(new Font("Dialog", Font.BOLD, 12));
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
+			new Object[][] {},
 			new String[] {
 				"C\u00F3digo", "Titulo", "Autor", "A\u00F1o", "Copias"
 			}
@@ -306,60 +262,59 @@ public class WindowBook extends JFrame implements ActionListener {
 		table.setColumnSelectionAllowed(true);
 		scrollPane.setViewportView(table);
 	}
-	public void button() {
-		
+	public JButton buttons(String text, Icon icon) {
+	    JButton btn = new JButton(text);
+	    btn.setIcon(icon);
+	    btn.setFont(new Font("Dialog", Font.BOLD, 16));
+	    btn.setBackground(new Color(0, 0, 153));
+	    btn.setForeground(Color.WHITE);
+	    btn.setOpaque(true);
+	    btn.setBorderPainted(false);
+	    btn.setFocusPainted(false);
+	    btn.addActionListener(this);
+	    return btn;
 	}
-
+	public JTextField txtField(String text) {
+		JTextField txt = new JTextField();
+		txt.setToolTipText(text);
+		txt.setFont(new Font("Dialog", Font.PLAIN, 12));
+		txt.setColumns(10);
+		return txt;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(btnBook==e.getSource()) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						WindowBook frame = new WindowBook();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+		if(btnBook == e.getSource()) {
+			EventQueue.invokeLater(() -> {
+				try {
+					WindowBook frame = new WindowBook();
+					frame.setVisible(true);
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 			});
 		}
 		if(btnUser==e.getSource()) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						FrmUser frame = new FrmUser();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+			EventQueue.invokeLater(() -> {
+				try {
+					FrmUser frame = new FrmUser();
+					frame.setVisible(true);
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 			});
 		}
 		if(btnLoan==e.getSource()) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						windowLoans frame = new windowLoans();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+			EventQueue.invokeLater(() -> {
+				try {
+					windowLoans frame = new windowLoans();
+					frame.setVisible(true);
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 			});
 		}
-		if(btnExit==e.getSource()) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						FrmAddUser frame = new FrmAddUser();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+		if(btnExit == e.getSource()) {
+			dispose();
 		}
-		
 	}
 }
