@@ -48,6 +48,7 @@ public class windowLoans extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	
 		setBounds(100, 100, 1100, 700);
 		setLocationRelativeTo(null);
@@ -166,11 +167,21 @@ public class windowLoans extends JFrame {
 				
 				
 				btnNewButton_4.addActionListener(new ActionListener() {
+					
 				    @Override
 				    public void actionPerformed(ActionEvent e) {
+				    	
+				    	if(comboBox.getSelectedItem() == null  ||
+				    	comboBox_1.getSelectedItem() == null) {
+				    		
+				    		JOptionPane.showMessageDialog(null, "Seleccione usuario y libro ");
+							return;
+				    	}
+				    	
+				    	
 
-				        JOptionPane.showMessageDialog(null, "Préstamo realizado correctamente\n" +
-				        	                                   "Prestado a: Juan");
+				        JOptionPane.showMessageDialog(null, "Préstamo realizado correctamente\n" 
+				        	                                   );
 				       
 				        
                                         

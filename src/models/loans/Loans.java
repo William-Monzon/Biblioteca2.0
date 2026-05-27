@@ -2,6 +2,7 @@ package models.loans;
 
 import java.time.LocalDate;
 
+import models.book.Book;
 import models.book.Material;
 import models.user.User;
 
@@ -23,6 +24,8 @@ public class Loans {
 		this.deadline = dateLoans.plusDays(material.dayLoans());
 		this.dateDelivery = dateDelivery;
 	}
+
+	
 
 	public LocalDate getDateDelivery() {
 		return dateDelivery;
