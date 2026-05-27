@@ -1,3 +1,0 @@
-1;20;55554444;Juan;Perez;2024001;juan@gmail.com;Guatemala
-2;22;44443333;Maria;Lopez;2024002;maria@gmail.com;Mixco
-3;19;11112222;Carlos;Ramirez;2024003;carlos@gmail.com;VillaNueva

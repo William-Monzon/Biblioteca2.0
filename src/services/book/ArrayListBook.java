@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -18,8 +17,7 @@ public class ArrayListBook {
 	private final ArrayList<Book> books = new ArrayList<>();
 
 	public List<Book> getBooks() {
-		return books;
-	}
+		return Collections.unmodifiableList(books);	}
 
 	public void addBooks(Book e) {
 		books.add(e);
@@ -41,15 +39,15 @@ public class ArrayListBook {
 				out.write(';');
 				out.write(e.getAutor());
 				out.write(';');
-				out.write(e.getYear());
+				out.write(String.valueOf(e.getYear()));
 				out.write(';');
-				out.write(e.getCopies());
+				out.write(String.valueOf(e.getCopies()));
 				out.newLine();
 			}
 		}
 	}
 
-	public void archiveBooks(Path archivo) throws IOException {
+	public void uploadFromFile(Path archivo) throws IOException {
 		books.clear();
 		if (!Files.isRegularFile(archivo)) {
 			return;
@@ -67,13 +65,14 @@ public class ArrayListBook {
 				String code = t.nextToken().trim();
 				String title = t.nextToken().trim();
 				String autor = t.nextToken().trim();
-				int year = Integer.parseInt(t.nextToken().trim());
-				int copies = Integer.parseInt(t.nextToken().trim());
-				books.add(new Book(code, title, autor, year, copies));
+				try {
+					int year = Integer.parseInt(t.nextToken().trim());
+					int copies = Integer.parseInt(t.nextToken().trim());
+					books.add(new Book(code, title, autor, year, copies));
+				} catch(NumberFormatException e){
+					System.out.println("Línea malformada, se omite: " + linea);
+				}
 			}
 		}
 	}
-	public Collection<Book> getBookAll() {
-        return Collections.unmodifiableCollection(books);
-    }
 }

@@ -1,56 +1,36 @@
 package main;
 
+import javax.swing.JFrame;
 
-
-//<<<<<<< HEAD
-//=======
-
-  //>>>>>>> 205600e205dcf27a4782a007f526536e2d768fe8
-import models.user.*;
-import services.user.ArrayListUser;
-
-
-
-
-
-
+import controllerUser.UserController;
+import interfaces.users.FrmUser;
 
 
 public class Main {
 
 	public static void main(String[] rgs)  {
 		// TODO Auto-generated method stub
-
-	
-	
-		
-		
-		// ejemplo usuario
-		User u1= new User(1,18,"5241625","mario","jerez","45f44s","abdiel@gmail.como","jutiapa, jutiapa");
-		
-		u1.showinf();
-		
-	
-		
 	
 
-		
-//<<<<<<< HEAD
-//=======
-		// servicios usuarios
-		ArrayListUser service = new ArrayListUser();
-	        
-	        for (User u :
-	                service.listUsers()) {
+        // Crear ventana principal
+        FrmUser view = new FrmUser();
 
-	            u.showinf();
+        // Crear controlador
+        new UserController(view);
 
-	            System.out.println();
-	        }
-		        
-		        
+        // Abrir maximizado
+        view.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        // Permitir redimensionar
+        view.setResizable(true);
+
+        // Centrar ventana
+        view.setLocationRelativeTo(null);
+
+        // Mostrar ventana
+        view.setVisible(true);
+        
 	}
-//>>>>>>> 205600e205dcf27a4782a007f526536e2d768fe8
 
 
 }
