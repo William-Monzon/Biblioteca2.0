@@ -1,20 +1,25 @@
 package controllers.loans;
 
 
-import models.user.*;
-
+import java.nio.file.Path;
 import java.util.ArrayList;
 
+import services.book.ArrayListBook;
 
 import javax.swing.JComboBox;
 
+import database.UserDatabase;
 
-import models.book.*;
+import models.book.Book;
 
-public class LoansController {
+import models.user.User;
 
-	private ArrayList<User> users = new ArrayList<>();
-	private ArrayList<Book> books = new ArrayList<>();
+
+
+public class loansController {
+
+	
+
 	
 	
 
@@ -22,7 +27,7 @@ public class LoansController {
     private JComboBox<Book> cbBooks;
 	
 	
-	public LoansController(
+	public loansController(
 		   JComboBox<User> cbUsers,
 		  JComboBox<Book> cbBooks
 		) {
@@ -41,18 +46,28 @@ public class LoansController {
 	
 	
 	private void loadUsers() {
-		for(User u : users) {
-			cbUsers.addItem(u);
-		}
-			
+		 UserDatabase.loadUsers();
+
+		    for(User u : UserDatabase.users) {
+		        cbUsers.addItem(u);
+		    }
 		}
 	
 	private void loadBooks() {
-		for(Book m : books) {
-			cbBooks.addItem(m);
-			
-		}
-		
+		try {
+	        ArrayListBook bookService = new ArrayListBook();
+
+	        bookService.uploadFromFile(
+	            Path.of("archivos/books.csv")
+	        );
+
+	        for (Book b : bookService.getBooks()) {
+	            cbBooks.addItem(b);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	public void createloan() {
