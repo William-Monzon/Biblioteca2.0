@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 
 
-public class FrmShowUser extends JFrame {
+public class WindowShowUser extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class FrmShowUser extends JFrame {
     
     
 
-    public FrmShowUser() {
+    public WindowShowUser() {
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 900, 500);

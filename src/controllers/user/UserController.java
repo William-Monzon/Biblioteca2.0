@@ -5,15 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import interfaces.users.FrmAddUser;
-import interfaces.users.FrmShowUser;
-import interfaces.users.FrmUser;
+import interfaces.users.WindowAddUser;
+import interfaces.users.WindowShowUser;
+import interfaces.users.WindowUser;
 
 public class UserController implements ActionListener {
 
-    private FrmUser view;
+    private WindowUser view;
 
-    public UserController(FrmUser view) {
+    public UserController(WindowUser view) {
 
         this.view = view;
 
@@ -43,7 +43,7 @@ public class UserController implements ActionListener {
     	    
     	    
 
-    	    FrmAddUser addView = new FrmAddUser();
+    	    WindowAddUser addView = new WindowAddUser();
 
     	    addView.setData(id, carnet);
 
@@ -54,7 +54,7 @@ public class UserController implements ActionListener {
 
         if (e.getSource() == view.btnShowUser) {
 
-            FrmShowUser showView = new FrmShowUser();
+            WindowShowUser showView = new WindowShowUser();
 
             new ShowUserController(showView);
 

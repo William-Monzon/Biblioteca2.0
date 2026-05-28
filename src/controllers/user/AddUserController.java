@@ -6,15 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import database.UserDatabase;
-import interfaces.users.FrmAddUser;
+import interfaces.users.WindowAddUser;
 import models.user.User;
 import validations.UserValidations;
 
 public class AddUserController implements ActionListener {
 
-    private FrmAddUser view;
+    private WindowAddUser view;
 
-    public AddUserController(FrmAddUser view) {
+    public AddUserController(WindowAddUser view) {
 
         this.view = view;
 

@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class FrmAddUser extends JFrame {
+public class WindowAddUser extends JFrame {
 	
 
 	    private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class FrmAddUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrmAddUser frame = new FrmAddUser();
+					WindowAddUser frame = new WindowAddUser();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class FrmAddUser extends JFrame {
 		});
 	}
 	
-	 public FrmAddUser() {
+	 public WindowAddUser() {
 
 	        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        setBounds(100, 100, 400, 700);

@@ -1,145 +1,107 @@
-package interfaces.loans;
+package interfaces.menu;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.Path;
 
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.*;
+
 
 import controllers.book.ControllerBook;
 import controllers.user.UserController;
 import interfaces.book.WindowBook;
+import interfaces.loans.WindowLoans;
 import interfaces.users.WindowUser;
 import services.book.ArrayListBook;
 
-public class WindowLoans extends JFrame implements ActionListener {
+public class WindowMain extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JButton btnBook, btnUser, btnLoan, btnExit;
 
-	public WindowLoans() {
-		setTitle("Ventana Préstamos");
+
+	public WindowMain() {
+		setTitle("Ventana Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		setBounds(100, 100, 862, 580);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-		setBounds(100, 100, 1100, 700);
-		setLocationRelativeTo(null);
-
-		// panel azul izquierdo
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 153));
-		panel.setBounds(0, 0, 232, 700);
-
-		setLocationRelativeTo(null);
+		panel.setBounds(0, 0, 232, 663);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Biblioteca");
-		lblNewLabel.setBounds(42, 10, 136, 30);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 25));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		panel.add(lblNewLabel);
+		JLabel lblLibrary = new JLabel("  Biblioteca");
+		lblLibrary.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLibrary.setIcon(new ImageIcon(WindowBook.class.getResource("/interfaces/images/Library.png")));
+		lblLibrary.setForeground(new Color(255, 255, 255));
+		lblLibrary.setFont(new Font("Arial", Font.BOLD, 19));
+		lblLibrary.setBounds(32, 23, 171, 50);
+		panel.add(lblLibrary);
 
 		btnBook = buttons("    Libros", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Book.png")));
 		btnBook.setBounds(33, 115, 160, 38);
 		panel.add(btnBook);
-
+		
+		
 		btnUser = buttons("   Usuarios", new ImageIcon(WindowBook.class.getResource("/interfaces/images/User.png")));
 		btnUser.setBounds(43, 165, 160, 38);
 		panel.add(btnUser);
-
+		
 		btnLoan = buttons("   Préstamos", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Loans.png")));
 		btnLoan.setBounds(40, 215, 170, 38);
 		panel.add(btnLoan);
-
+		
 		btnExit = buttons("    Salir", new ImageIcon(WindowBook.class.getResource("/interfaces/images/Exit.png")));
 		btnExit.setHorizontalAlignment(SwingConstants.LEADING);
 		btnExit.setBounds(43, 265, 160, 38);
 		panel.add(btnExit);
 
-		JLabel lblNewLabel_1 = new JLabel("Préstamos");
-		lblNewLabel_1.setForeground(new Color(0, 0, 128));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel_1.setBounds(284, 49, 191, 56);
-		contentPane.add(lblNewLabel_1);
+		// imagen menú
+		ImageIcon icon = new ImageIcon(getClass().getResource("/interfaces/images/menu.png"));
+		// Escalar imagen
+		Image img = icon.getImage().getScaledInstance(310, 320, Image.SCALE_SMOOTH);
+		// Convertir otra vez a icono
+		ImageIcon iconEscalado = new ImageIcon(img);
 
-		JLabel lblNewLabel_2 = new JLabel("Usuario:");
-		lblNewLabel_2.setBackground(new Color(240, 240, 240));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 23));
-		lblNewLabel_2.setBounds(374, 147, 125, 56);
-		contentPane.add(lblNewLabel_2);
+		// mensaje de bienvenida
+		JLabel lblBooks = new JLabel("Bienvenido al Sistema de Biblioteca");
+		lblBooks.setForeground(new Color(0, 0, 128));
+		lblBooks.setFont(new Font("Arial", Font.BOLD, 25));
+		lblBooks.setBounds(331, 38, 440, 42);
+		contentPane.add(lblBooks);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(384, 206, 358, 27);
-		contentPane.add(comboBox);
+		// mensaje inicio
+		JLabel lblForm = new JLabel("Seleccione una opción del menú para comenzar.");
+		lblForm.setForeground(new Color(0, 0, 102));
+		lblForm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
+		lblForm.setBounds(351, 73, 381, 42);
+		contentPane.add(lblForm);
 
-		JLabel lblNewLabel_3 = new JLabel("Libro");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 23));
-		lblNewLabel_3.setBounds(384, 331, 125, 35);
-		contentPane.add(lblNewLabel_3);
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(384, 391, 375, 27);
-		contentPane.add(comboBox_1);
-
-		JLabel lblNewLabel_4 = new JLabel();
-		lblNewLabel_4.setBounds(100, 100, 50, 50);
-
-		contentPane.add(lblNewLabel_4);
-
-		JButton btnNewButton_4 = new JButton("Prestar");
-		btnNewButton_4.setBounds(780, 570, 120, 40);
-
-		btnNewButton_4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (comboBox.getSelectedItem() == null || comboBox_1.getSelectedItem() == null) {
-
-					JOptionPane.showMessageDialog(null, "Seleccione usuario y libro ");
-					return;
-				}
-
-				JOptionPane.showMessageDialog(null, "Préstamo realizado correctamente\n");
-
-			}
-
-		});
-
-		btnNewButton_4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			;
-
-		});
-		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton_4.setBackground(new Color(42, 47, 210));
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setBounds(374, 529, 149, 56);
-		contentPane.add(btnNewButton_4);
-		btnNewButton_4.setBackground(Color.decode("#2A2FD2"));
-		btnNewButton_4.setForeground(Color.WHITE);
-		btnNewButton_4.setOpaque(true);
-		btnNewButton_4.setBorderPainted(false);
-		btnNewButton_4.setFocusPainted(false);
+		// Crear JLabel
+		JLabel lblImagen = new JLabel(iconEscalado);
+		lblImagen.setBounds(331, 147, 394, 296);
+		contentPane.add(lblImagen);
 
 	}
 
@@ -203,6 +165,6 @@ public class WindowLoans extends JFrame implements ActionListener {
 		if (btnExit == e.getSource()) {
 			dispose();
 		}
-
 	}
+
 }

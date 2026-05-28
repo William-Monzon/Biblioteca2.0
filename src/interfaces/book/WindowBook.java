@@ -14,13 +14,17 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import interfaces.loans.windowLoans;
-import interfaces.users.FrmUser;
+import controllers.book.ControllerBook;
+import controllers.user.UserController;
+import interfaces.loans.WindowLoans;
+import interfaces.users.WindowUser;
+import services.book.ArrayListBook;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -40,19 +44,6 @@ public class WindowBook extends JFrame implements ActionListener {
 	public JTable table;
 	public JButton btnBook, btnUser, btnLoan, btnExit, btnAddBook, btnModifyBook, btnDeleteBook;
 
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				WindowBook frame = new WindowBook();
-				frame.setVisible(true);
-			} catch (Exception e) {
-				ex.printStackTrace();
-			}
-		});
-	}*/
-	/**
-	 * Create the frame.
-	 */
 	public WindowBook() {
 		setTitle("Ventana Libros");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -283,19 +274,29 @@ public class WindowBook extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(btnBook == e.getSource()) {
+			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
+					ArrayListBook bookService = new ArrayListBook();
 					WindowBook frame = new WindowBook();
+					ControllerBook controller = new ControllerBook(bookService, frame, Path.of("archivos/books.csv"));
+					controller.loadData();
+					controller.initEvents();
 					frame.setVisible(true);
-				} catch (Exception ex) {
-					ex.printStackTrace();
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			});
 		}
 		if(btnUser==e.getSource()) {
+			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
-					FrmUser frame = new FrmUser();
+					WindowUser frame = new WindowUser();
+			        new UserController(frame);
+			        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			        frame.setResizable(true);
+			        frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -303,12 +304,14 @@ public class WindowBook extends JFrame implements ActionListener {
 			});
 		}
 		if(btnLoan==e.getSource()) {
-			EventQueue.invokeLater(() -> {
-				try {
-					windowLoans frame = new windowLoans();
-					frame.setVisible(true);
-				} catch (Exception ex) {
-					ex.printStackTrace();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						WindowLoans frame = new WindowLoans();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			});
 		}

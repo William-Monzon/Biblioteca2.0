@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import database.UserDatabase;
-import interfaces.users.FrmShowUser;
+import interfaces.users.WindowShowUser;
 import models.user.User;
 
 
@@ -16,9 +16,9 @@ import models.user.User;
 public class ShowUserController implements ActionListener {
 	
 
-	    private FrmShowUser view;
+	    private WindowShowUser view;
 
-	    public ShowUserController(FrmShowUser view) {
+	    public ShowUserController(WindowShowUser view) {
 
 	        this.view = view;
 	        UserDatabase.loadUsers();

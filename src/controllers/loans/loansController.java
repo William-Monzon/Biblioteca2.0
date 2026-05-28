@@ -7,12 +7,11 @@ import java.util.ArrayList;
 
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+
 
 import models.book.*;
-import models.loans.Loans;
 
-public class loansController {
+public class LoansController {
 
 	private ArrayList<User> users = new ArrayList<>();
 	private ArrayList<Book> books = new ArrayList<>();
@@ -23,7 +22,7 @@ public class loansController {
     private JComboBox<Book> cbBooks;
 	
 	
-	public loansController(
+	public LoansController(
 		   JComboBox<User> cbUsers,
 		  JComboBox<Book> cbBooks
 		) {
