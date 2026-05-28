@@ -17,7 +17,7 @@ import interfaces.book.WindowBook;
 import interfaces.users.WindowUser;
 import services.book.ArrayListBook;
 
-public class WindowLoans extends JFrame implements ActionListener {
+public class windowLoans extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
