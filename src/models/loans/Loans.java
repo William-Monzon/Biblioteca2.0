@@ -2,7 +2,6 @@ package models.loans;
 
 import java.time.LocalDate;
 
-import models.book.Book;
 import models.book.Material;
 import models.user.User;
 

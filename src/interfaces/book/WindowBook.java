@@ -289,6 +289,7 @@ public class WindowBook extends JFrame implements ActionListener {
 			});
 		}
 		if(btnUser==e.getSource()) {
+			dispose();
 			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
@@ -304,6 +305,7 @@ public class WindowBook extends JFrame implements ActionListener {
 			});
 		}
 		if(btnLoan==e.getSource()) {
+			dispose();
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {

@@ -31,11 +31,4 @@ public class Magazine extends Material {
 		super.returnCopies();
 	}
 
-	@Override
-	public String toString() {
-		return "Magazine [getCode()=" + getCode() + ", getTitle()=" + getTitle() + ", getAutor()=" + getAutor()
-				+ ", getYear()=" + getYear() + ", getCopies()=" + getCopies() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
-	}
-
 }

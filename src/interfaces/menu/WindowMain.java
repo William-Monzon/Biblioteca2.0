@@ -121,6 +121,7 @@ public class WindowMain extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (btnBook == e.getSource()) {
+			dispose();
 			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
@@ -130,12 +131,14 @@ public class WindowMain extends JFrame implements ActionListener {
 					controller.loadData();
 					controller.initEvents();
 					frame.setVisible(true);
+					this.dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			});
 		}
 		if (btnUser == e.getSource()) {
+			dispose();
 			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
@@ -145,17 +148,21 @@ public class WindowMain extends JFrame implements ActionListener {
 					frame.setResizable(true);
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
+					this.dispose();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			});
 		}
 		if (btnLoan == e.getSource()) {
+			dispose();
+			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
 						WindowLoans frame = new WindowLoans();
 						frame.setVisible(true);
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

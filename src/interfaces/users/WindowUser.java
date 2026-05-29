@@ -143,6 +143,7 @@ public class WindowUser extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (btnBook == e.getSource()) {
+			dispose();
 			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
@@ -158,6 +159,7 @@ public class WindowUser extends JFrame implements ActionListener {
 			});
 		}
 		if (btnUser == e.getSource()) {
+			dispose();
 			System.setProperty("file.encoding", "UTF-8");
 			EventQueue.invokeLater(() -> {
 				try {
@@ -173,6 +175,7 @@ public class WindowUser extends JFrame implements ActionListener {
 			});
 		}
 		if (btnLoan == e.getSource()) {
+			dispose();
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
