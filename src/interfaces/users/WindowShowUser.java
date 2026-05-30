@@ -21,6 +21,8 @@ public class WindowShowUser extends JFrame {
     public JButton btnEdit;
     public JButton btnSavecam;
     public JButton btnClose;
+    
+    public JButton btnDelete;
    
 
     
@@ -61,6 +63,10 @@ public class WindowShowUser extends JFrame {
         contentPane.add(btnClose);
         
     
+        btnDelete = new JButton("BORRAR");
+        btnDelete.setBounds(350, 420, 180, 40);
+        contentPane.add(btnDelete);
+        
         
         
     }

@@ -1,5 +1,8 @@
 package validations;
 
+import database.UserDatabase;
+import models.user.User;
+
 public class UserValidations {
 
 
@@ -34,6 +37,45 @@ public class UserValidations {
 	    public static boolean validPhone(String phone) {
 
 	        return phone.matches("[0-9]{8}");
+	    }
+	    
+	    // validación para que telefono tenga solo 8 digitos
+	    public static boolean phoneLength(String phone) {
+
+	        return phone.length() == 8;
+	    }
+	    
+	     // DETECTA ID REPETIDO
+	    public static boolean idExists(String id) {
+
+	        UserDatabase.loadUsers();
+
+	        for (User user : UserDatabase.users) {
+
+	            if (String.valueOf(user.getId()).equals(id)) {
+
+	                return true;
+	            }
+	        }
+
+	        return false;
+	        
+	    }
+	    
+	    // DETECTA CARNET REPETIDOS
+	    public static boolean carnetExists(String carnet) {
+
+	        UserDatabase.loadUsers();
+
+	        for (User user : UserDatabase.users) {
+
+	            if (user.getCarnet().equalsIgnoreCase(carnet)) {
+
+	                return true;
+	            }
+	        }
+
+	        return false;
 	    }
 	    
 	    

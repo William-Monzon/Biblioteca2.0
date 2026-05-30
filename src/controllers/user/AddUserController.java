@@ -29,9 +29,34 @@ public class AddUserController implements ActionListener {
 
             try {
 
+            	// SE CREA EL ID Y CARNET
                 String id = view.getTextID().getText();
                 String carnet = view.getTextCARNET().getText();
                 
+
+            	
+            	// VALIDAR ID REPETIDO
+            	if (UserValidations.idExists(id)) {
+
+            	    JOptionPane.showMessageDialog(
+            	            null,
+            	            "El ID ya existe"
+            	    );
+
+            	    return;
+            	}
+
+            	// VALIDAR CARNET REPETIDO
+            	if (UserValidations.carnetExists(carnet)) {
+
+            	    JOptionPane.showMessageDialog(
+            	            null,
+            	            "El carnet ya existe"
+            	    );
+
+            	    return;
+            	}
+            	
                 
 				// ---------------------------------------------------------------------------
 				String name = view.getTextNOMBRE().getText();
@@ -83,7 +108,30 @@ public class AddUserController implements ActionListener {
 
 				String address = view.getTextDIRECCION().getText();
              
+				
 
+				// VALIDAR TELÉFONO
+				if (!UserValidations.onlyNumbers(phone)) {
+
+				    JOptionPane.showMessageDialog(
+				            null,
+				            "Teléfono inválido"
+				    );
+
+				    return;
+				}
+
+				// VALIDAR LONGITUD DEL TELÉFONO
+				if (!UserValidations.phoneLength(phone)) {
+
+				    JOptionPane.showMessageDialog(
+				            null,
+				            "El teléfono debe tener 8 dígitos"
+				    );
+
+				    return;
+				}
+				
              
 
                 // VALIDAR CAMPOS VACÍOS

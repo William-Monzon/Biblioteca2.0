@@ -28,6 +28,8 @@ public class ShowUserController implements ActionListener {
 	        view.btnEdit.addActionListener(this);
 	        view.btnSavecam.addActionListener(this);
 	        view.btnClose.addActionListener(this);
+	        view.btnDelete.addActionListener(this);
+	        
 	   
 	    }
 
@@ -68,7 +70,7 @@ public class ShowUserController implements ActionListener {
 	    }
 
 	    @Override
-	    public void actionPerformed(ActionEvent e) { //***************
+	    public void actionPerformed(ActionEvent e) { 
 
 	        if (e.getSource() == view.btnEdit) {
 
@@ -85,8 +87,17 @@ public class ShowUserController implements ActionListener {
 	            view.dispose();
 	            
 	        }
+	        
+	        if (e.getSource() == view.btnDelete) {
+
+	            deleteUser();
+	        }
+	        
 	    }
 
+	    
+	    
+	    
 	    public void saveChanges() {
 
 	        try {
@@ -94,8 +105,10 @@ public class ShowUserController implements ActionListener {
 	            DefaultTableModel model =
 	                    (DefaultTableModel) view.tableUsers.getModel();
 
+	            // limpiar lista actual
 	            UserDatabase.users.clear();
 
+	            // RECORRE LA TABLA
 	            for (int i = 0; i < model.getRowCount(); i++) {
 
 	                String id = model.getValueAt(i, 0).toString();
@@ -104,8 +117,7 @@ public class ShowUserController implements ActionListener {
 	                String lastname = model.getValueAt(i, 3).toString();
 
 	                int age = Integer.parseInt(
-	                        model.getValueAt(i, 4).toString()
-	                );
+	                        model.getValueAt(i, 4).toString());
 
 	                String phone = model.getValueAt(i, 5).toString();
 	                String mail = model.getValueAt(i, 6).toString();
@@ -122,23 +134,55 @@ public class ShowUserController implements ActionListener {
 	                        address
 	                );
 
-	                UserDatabase.updateFile();
-	               
+	                // AGREGAR USER AL ARRAYLIST
+	                UserDatabase.users.add(user);
 	            }
 
-	            JOptionPane.showMessageDialog(null,
-	                    "Cambios guardados correctamente");
+	            // GUARDAR TODO EL ARRAYLIST EN EL TXT
+	            UserDatabase.updateFile();
+
+	            JOptionPane.showMessageDialog(
+	                    null,
+	                    "Cambios guardados correctamente"
+	            );
 
 	            view.tableUsers.setEnabled(false);
 
 	        } catch (Exception ex) {
 
-	            JOptionPane.showMessageDialog(null,
-	                    "Error al guardar cambios");
+	            JOptionPane.showMessageDialog(
+	                    null,
+	                    "Error al guardar cambios"
+	            );
 	        }
-	        
-	        
-	        
-	        
 	    }
+	        
+	    // METODO BORRAR USER
+	    public void deleteUser() {
+
+	        int row = view.tableUsers.getSelectedRow();
+
+	        if (row == -1) {
+
+	            JOptionPane.showMessageDialog(
+	                    null,
+	                    "Seleccione un usuario"
+	            );
+
+	            return;
+	        }
+
+	        DefaultTableModel model =
+	                (DefaultTableModel) view.tableUsers.getModel();
+
+	        model.removeRow(row);
+
+	        JOptionPane.showMessageDialog(
+	                null,
+	                "Usuario eliminado de la tabla"
+	        );
+	    }
+	           
+	        
+	    
 	} 

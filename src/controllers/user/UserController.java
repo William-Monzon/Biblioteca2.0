@@ -24,41 +24,47 @@ public class UserController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-    	if (e.getSource() == view.btnAddUser) {
+        // AGREGAR USUARIO
+        if (e.getSource() == view.btnAddUser) {
 
-    	    String id = view.getTxtid().getText();
-    	    String carnet = view.getTxtcarnet().getText();
+            String id = view.getTxtid().getText();
+            String carnet = view.getTxtcarnet().getText();
 
-    	    // VALIDAR CAMPOS VACÍOS
-    	    if (id.trim().isEmpty() || carnet.trim().isEmpty()) {
+            if (id.trim().isEmpty() || carnet.trim().isEmpty()) {
 
-    	        JOptionPane.showMessageDialog(
-    	            null,
-    	            "Debe llenar primero ID y Carnet"
-    	        );
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Debe llenar primero ID y Carnet"
+                );
 
-    	        return;
-    	    }
-    	    
-    	    
-    	    
+                return;
+            }
 
-    	    WindowAddUser addView = new WindowAddUser();
+            WindowAddUser addView = new WindowAddUser();
 
-    	    addView.setData(id, carnet);
+            addView.setData(id, carnet);
 
-    	    new AddUserController(addView);
+            new AddUserController(addView);
 
-    	    addView.setVisible(true);
-    	}
+            addView.setVisible(true);
 
+            view.getTxtid().setText("");
+            view.getTxtcarnet().setText("");
+        }
+
+        // MOSTRAR USUARIOS
         if (e.getSource() == view.btnShowUser) {
 
-            WindowShowUser showView = new WindowShowUser();
+            WindowShowUser showView =
+                    new WindowShowUser();
 
             new ShowUserController(showView);
 
+            showView.setLocationRelativeTo(null);
             showView.setVisible(true);
+
+            view.getTxtid().setText("");
+            view.getTxtcarnet().setText("");
         }
     }
 }
