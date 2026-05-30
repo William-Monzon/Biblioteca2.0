@@ -31,11 +31,11 @@ public class WindowLoans extends JFrame implements ActionListener {
 	public WindowLoans() {
 		setTitle("Ventana Pr\u00E9stamos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(100, 100, 1100, 700);
 		setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
@@ -173,9 +173,7 @@ public class WindowLoans extends JFrame implements ActionListener {
 				try {
 					WindowUser frame = new WindowUser();
 					new UserController(frame);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setResizable(true);
-					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();

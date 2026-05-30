@@ -1,2 +1,0 @@
-12,45858uy,Carlos,Perez,18,45896857,Caperez@gmail.com,petén
-1,12,Jose,Perez,22,45852545,Jperez@gmail.com,izabal

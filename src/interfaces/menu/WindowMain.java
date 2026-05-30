@@ -38,7 +38,9 @@ public class WindowMain extends JFrame implements ActionListener {
 	public WindowMain() {
 		setTitle("Ventana Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 862, 580);
+		setBounds(100, 100, 1100, 700);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,27 +82,27 @@ public class WindowMain extends JFrame implements ActionListener {
 		// imagen menú
 		ImageIcon icon = new ImageIcon(getClass().getResource("/interfaces/images/menu.png"));
 		// Escalar imagen
-		Image img = icon.getImage().getScaledInstance(310, 320, Image.SCALE_SMOOTH);
+		Image img = icon.getImage().getScaledInstance(370, 370, Image.SCALE_SMOOTH);
 		// Convertir otra vez a icono
 		ImageIcon iconEscalado = new ImageIcon(img);
 
 		// mensaje de bienvenida
 		JLabel lblBooks = new JLabel("Bienvenido al Sistema de Biblioteca");
 		lblBooks.setForeground(new Color(0, 0, 128));
-		lblBooks.setFont(new Font("Arial", Font.BOLD, 25));
-		lblBooks.setBounds(331, 38, 440, 42);
+		lblBooks.setFont(new Font("Arial", Font.BOLD, 30));
+		lblBooks.setBounds(331, 38, 540, 42);
 		contentPane.add(lblBooks);
 
 		// mensaje inicio
 		JLabel lblForm = new JLabel("Seleccione una opción del menú para comenzar.");
 		lblForm.setForeground(new Color(0, 0, 102));
 		lblForm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
-		lblForm.setBounds(351, 73, 381, 42);
+		lblForm.setBounds(411, 73, 381, 42);
 		contentPane.add(lblForm);
 
 		// Crear JLabel
 		JLabel lblImagen = new JLabel(iconEscalado);
-		lblImagen.setBounds(331, 147, 394, 296);
+		lblImagen.setBounds(411, 197, 370, 370);
 		contentPane.add(lblImagen);
 
 	}
@@ -144,9 +146,7 @@ public class WindowMain extends JFrame implements ActionListener {
 				try {
 					WindowUser frame = new WindowUser();
 					new UserController(frame);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setResizable(true);
-					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 					this.dispose();
 				} catch (Exception ex) {

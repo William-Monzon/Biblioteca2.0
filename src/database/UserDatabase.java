@@ -14,7 +14,7 @@ public class UserDatabase {
     public static ArrayList<User> users = new ArrayList<>();
 
     // RUTA ARCHIVO
-    public static String path = "archivos/users.txt";
+    public static String path = "archivos/users.csv";
 
     // GUARDAR USUARIO
     public static void saveUser(User user) {

@@ -1,6 +1,6 @@
 package models.book;
 
-public abstract class Material {
+public abstract class Material { //Clase padre
 	private final String code;
 	private final String title;
 	private final String autor;
@@ -12,7 +12,7 @@ public abstract class Material {
 		this.title = title;
 		this.autor = autor;
 		this.year = year;
-		setCopies(copies);
+		setCopies(copies); //Copias validadas para qu no sean menos a 0
 	}
 
 	public String getCode() {
@@ -36,16 +36,16 @@ public abstract class Material {
 	}
 
 	public void setCopies(int copies) {
-		if(copies<0) {
+		if(copies<0) { //Se validan las copias para que no sean menores a 0
 			throw new IllegalArgumentException("Error: ");
 		}
 		this.copies = copies;
 	}
-
+	//Métodos abstractos para que la clase hija los sobreescriba obligatoriamente
 	public abstract double calculateFine();
 
 	public abstract int dayLoans();
-
+	//Método para saber si el libro está disponible
 	public boolean isAvailable() {
 		if (copies > 0) {
 			return true;
@@ -54,15 +54,15 @@ public abstract class Material {
 		}
 
 	}
-
+	//Método para reducir copias si hay un préstamo
 	public void reduceCopies() {
 		this.copies--;
 	}
-
+	//Método para aumentar las copias si hay una devolución
 	public void returnCopies() {
 		this.copies++;
 	}
-
+	//To string que muestra el nombre del libro
 	@Override
 	public String toString() {
 		return title;

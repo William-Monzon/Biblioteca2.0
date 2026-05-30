@@ -32,15 +32,16 @@ public class WindowUser extends JFrame implements ActionListener {
 	private JTextField txtid;
 	private JTextField txtcarnet;
 
-	public JButton btnAddUser;
-	public JButton btnShowUser;
-	public JButton btnBook, btnUser, btnLoan, btnExit;
+	public JButton btnAddUser, btnShowUser, btnBook, btnUser, btnLoan, btnExit;
 
 	public WindowUser() {
 		setTitle("Ventana Usuarios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 700);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -48,7 +49,7 @@ public class WindowUser extends JFrame implements ActionListener {
 		// panel azul izquierdo
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 153));
-		panel.setBounds(0, 0, 201, 663);
+		panel.setBounds(0, 0, 232, 663);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -80,7 +81,7 @@ public class WindowUser extends JFrame implements ActionListener {
 		// -----------------------------------
 		JLabel lblTitle = new JLabel("USUARIOS");
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 25));
-		lblTitle.setBounds(211, 10, 200, 40);
+		lblTitle.setBounds(311, 20, 200, 40);
 		contentPane.add(lblTitle);
 
 		JLabel lblId = new JLabel("ID");
@@ -113,10 +114,10 @@ public class WindowUser extends JFrame implements ActionListener {
 		btnShowUser.setBounds(656, 350, 220, 50);
 		contentPane.add(btnShowUser);
 
-		JLabel lblID1 = new JLabel("ID");
-		lblID1.setFont(new Font("Arial", Font.BOLD, 16));
-		lblID1.setBounds(261, 159, 65, 12);
-		contentPane.add(lblID1);
+		JLabel lblId1 = new JLabel("ID");
+		lblId1.setFont(new Font("Arial", Font.BOLD, 16));
+		lblId1.setBounds(261, 159, 65, 12);
+		contentPane.add(lblId1);
 	}
 
 	public JTextField getTxtid() {
@@ -165,9 +166,7 @@ public class WindowUser extends JFrame implements ActionListener {
 				try {
 					WindowUser frame = new WindowUser();
 					new UserController(frame);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setResizable(true);
-					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();

@@ -66,8 +66,7 @@ public class LoansController {
 
 	// Método para crear el préstamo
 	public void createloan() {
-		User user = (User) cbUsers.getSelectedItem(); // El usuario selecciona quien es el titular del prestamo
-														// capturando los datos
+		User user = (User) cbUsers.getSelectedItem(); // El usuario selecciona quien es el titular del prestamo capturando los datos
 		Book book = (Book) cbBooks.getSelectedItem(); // El usuario elige que libro se prestará capturando los datos
 		// Validación cuando el libro no está disponible, porque no cuenta con copias
 		if (!book.isAvailable()) {
@@ -75,15 +74,13 @@ public class LoansController {
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		// Datos del préstamo como el id, el día del préstamo, el día limite y el dia de
-		// devolucón
+		// Datos del préstamo como el id, el día del préstamo, el día limite y el dia de devolucón
 		int id = loanService.getLoans().size() + 1;
 		LocalDate now = LocalDate.now();
 		Loans loan = new Loans(id, book, user, now, now.plusDays(book.dayLoans()), null);
 		// llamada al método que reduce las copias del libro
 		book.reduceCopies();
-		// Valida que el préstamo se ingrese correctamente para guardarlo en los
-		// archivos .csv
+		// Valida que el préstamo se ingrese correctamente para guardarlo en los archivos .csv
 		try { 
 			loanService.addLoan(loan); //Se guarda el préstamo en el ArrayList y con persistencia en los archivos .csv
 			loanService.saveLoans(loansPath);

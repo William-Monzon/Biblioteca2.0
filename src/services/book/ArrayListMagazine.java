@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import models.book.Magazine;
-
+//Clase para la lista de revistas, está clase se utilizará en un futuro cuando la biblioteca tenga revistas en su stock
 public class ArrayListMagazine {
 private final ArrayList<Magazine> magazines = new ArrayList<>();
 	
